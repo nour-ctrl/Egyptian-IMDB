@@ -1,0 +1,76 @@
+{% extends "base2.html" %}
+{% block title %}{{ info['CName']}} {% endblock %} 
+
+{% block style %}
+<style> 
+         * {
+          margin: 0; 
+          padding: 0;
+          }
+        body {
+          background-image: url(https://db3pap004files.storage.live.com/y4m9lMTsAL4PEAuRr1kcCGwFOAqepwq5afk6-3mYLLiAZImhBj4tbxL0d5dzobdr35wIqqnJeB4xiTJP2kEizqHLD7CILj7aKBwj-vuudMUCwbpXqghsZ6bXVOqhHg-Y2mbUfWAnO-Uv0SC1ekHOR2ET-mKqm3bpOJdY7hTyXcvil42-4sujJyjWIwmd5b2LuNl?width=2202&height=1263&cropmode=none);
+          background-size: cover;
+         
+          }
+        .series {
+            margin: 3% 0;
+        }
+        .left-box {
+            color: white;
+            margin-left: 20px;
+        }
+        h1 {
+          color: white; 
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 50px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        .movie-img {
+            width: 150%;
+            box-shadow: -4px 4px 5px 0 #fff; 
+            margin-left: 900px;
+            margin-top: -250px;
+        }
+         .cast_image {
+            width: 20%;
+            margin-right: 10px;
+            margin-top: 8px; 
+            cursor: pointer;
+            box-shadow: -3px 3px 3px 0 #fff;
+        }
+       </style>
+{% endblock %}
+{% block content %}
+
+<div class="container series">
+    <div class="row">
+    <div class="col-md-6 left-box">
+        <h1>  {{ info['CName']}} </h1>
+        </br>
+        <h2> Birthdate: {{ info['Birthdate'] }} </h2>
+        <h2> Nationality: {{ info['Nationality'] }} </h2>
+        </br>
+        <h3> Biography: </h3>
+        <p> {{ info['Biography'] }} </p>
+        <div class="col-md-6">
+        <img src={{info['Image']}} class="movie-img"> 
+        </div> 
+        <h3> Movies: </h3>
+            {% for i in range(0, len1) %}
+                <a href=/{{ c_movie[i]['M_ID'] }}>
+                <img src={{ c_movie[i]['Image'] }} class="cast_image">
+                </a>
+            {% endfor %}  
+    
+    </div>
+     
+</div>
+
+{% endblock %}
+
+
+
+
+

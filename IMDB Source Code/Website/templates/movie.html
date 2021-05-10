@@ -1,0 +1,139 @@
+{% extends "base2.html" %}
+{% block title %}{{ movie['Title'] }} {% endblock %} 
+
+{% block style %}
+<style> 
+         * {
+          margin: 0; 
+          padding: 0;
+          }
+
+        body {
+          background-image: url(static/bg-03.jpg);
+          background-size: cover;
+          }
+        .series {
+            margin: 3% 0;
+        }
+        .left-box {
+            color: white;
+            margin-left: 20px;
+        }
+        h1 {
+          color: white; 
+          font-family: Arial, Helvetica, sans-serif;
+          font-size: 50px;
+        }
+        h2 {
+            font-size: 20px;
+        }
+        .movie-img {
+            width: 150%;
+            box-shadow: -4px 4px 5px 0 #fff; 
+            margin-left: 900px;
+            margin-top: -280px;
+        }
+        .cast_image {
+            width: 7%;
+            margin-right: 10px;
+            margin-top: 8px; 
+            cursor: pointer;
+            box-shadow: -3px 3px 3px 0 #fff;
+        }
+       </style>
+{% endblock %}
+{% block content %}
+<div class="container series">
+    <div class="row">
+    <div class="col-md-6 left-box">
+        <h1>  {{ movie['Title']}} </h1>
+        </br>
+        <h2> Release Date: {{ movie['Release_Date'] }} </h2>
+        <h2> Duration: {{ movie['Duration'] }} </h2>
+        <h2> Censorship: {{ movie['Censorship'] }} </h2>
+        <h2> Total Revenue: {{ movie['Comma'] }} EGP </h2>
+        <h2> Average Rating: {{ rate }} </h2>
+        </br>
+        <h2> Genre: </h2>
+        <p>
+            {% for i in range(0, len_g) %}
+                    <a href=/{{ genre[i]}}> {{genre[i]}} </a>
+            {% endfor %}
+            </p>
+        <h3> Description: </h3>
+        <p> {{ movie['MDescription'] }} </p>
+        <div class="col-md-6">
+        <img src={{movie['Image']}} class="movie-img"> 
+        </div>
+        <h3> Actors: </h3>
+            {% for i in range(0, len1) %}
+                {% if role[i] == " Actor  "%}
+                    <a href=/cast/{{ info[i]['ID'] }}>
+                    <img src={{ info[i]['Image'] }} class="cast_image">
+                </a>
+                {% endif%}
+            {% endfor %} 
+        <h3> Director(s): </h3>
+            {% for i in range(0, len1) %}
+                {% if role[i] == " Director  "%}
+                    <a href=/cast/{{ info[i]['ID'] }}>
+                    <img src={{ info[i]['Image'] }} class="cast_image">
+                </a>
+                {% endif%}
+            {% endfor %} 
+        <h3> Editor(s): </h3>
+            {% for i in range(0, len1) %}
+                {% if role[i] == " Editor  "%}
+                    <a href=/cast/{{ info[i]['ID'] }}>
+                    <img src={{ info[i]['Image'] }} class="cast_image">
+                </a>
+                {% endif%}
+            {% endfor %}
+        <h3> Producer(s): </h3>
+            {% for i in range(0, len1) %}
+                {% if role[i] == " Producer  "%}
+                    <a href=/cast/{{ info[i]['ID'] }}>
+                    <img src={{ info[i]['Image'] }} class="cast_image">
+                </a>
+                {% endif%}
+            {% endfor %}
+        <h3> Writer(s): </h3>
+            {% for i in range(0, len1) %}
+                {% if role[i] == " Writer  "%}
+                    <a href=/cast/{{ info[i]['ID'] }}>
+                    <img src={{ info[i]['Image'] }} class="cast_image">
+                </a>
+                {% endif%}
+            {% endfor %} 
+        </br>
+        </br>
+        </br>
+        <h3> Reviews: </h3>
+            {% for i in range(0, len2) %}
+                <p> {{reviews[i]['Email']}} :  </br>  {{reviews[i]['Review']}} Rating: {{reviews[i]['Rating']}} </p>
+                </br>
+            {% endfor %} 
+
+        <h3> Add a Review: </h3>
+        <form method="POST">
+        <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter email" />
+        </div>
+        <div class="form-group">
+        <label for="username">Review</label>
+        <input type="text" class="form-control" id="review" name="review" placeholder="Enter your movie review" />
+        </div>
+        <div class="form-group">
+        <label for="rating">Rating</label>
+        <input type="text" class="form-control" id="rating" name="rating" placeholder="Enter a rating from 1-10" />
+        </div> 
+        <br />
+        <button type="submit" class="btn btn-primary">Submit </button>   
+        </form>
+    </div>
+     
+</div>
+
+
+{% endblock %}

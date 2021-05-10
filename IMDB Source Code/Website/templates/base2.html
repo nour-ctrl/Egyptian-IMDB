@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/> 
+        <meta name = "viewport"content = "width=device-width, initial-scale=1"/>
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            crossorigin="anonymous"
+        />
+        <title> {% block title %} Home {% endblock %} </title>
+        <link rel="icon" type="image/png" sizes="32x32" href="https://db3pap004files.storage.live.com/y4mCAtl66GIxa9H-5x62jWAwyeq5s_0-5XZiRGJ1n6zqne1CaDpr7JA7Lyvm9HMqBPepg9QD5UqYYCXgavlnuSWyXORP2O3VSXULGCIQffs-4H6uqwhF3r9cfXycRRLAJjWp5akF0-SrwVEFaHAbNUp8JAe6SJ8HbmeQnqHF1nb9sTa1FS2hEMUbxSRS2lzqjGh?width=512&height=512&cropmode=none">
+        <link rel="stylesheet" type="text/css" href="static/home.css">
+
+    <style>
+    {% block style %}{% endblock %}
+    </style>
+
+     </head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark"">
+  <a class="navbar-brand" href="/home">Egyptian IMDB</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/home"> Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/movies">All Movies</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/cast">All Cast Members</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/top">Top 10</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/genre" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Genre
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/action">Action</a>
+          <a class="dropdown-item" href="/adventure">Adventure</a>
+          <a class="dropdown-item" href="/biography">Biography</a>
+          <a class="dropdown-item" href="/comedy">Comedy</a>
+          <a class="dropdown-item" href="/crime">Crime</a>
+          <a class="dropdown-item" href="/documentary">Documentary</a>
+          <a class="dropdown-item" href="/drama">Drama</a>
+          <a class="dropdown-item" href="/fantasy">Fantasy</a>
+          <a class="dropdown-item" href="/history">History</a>
+          <a class="dropdown-item" href="/horror">Horror</a>
+          <a class="dropdown-item" href="/musical">Musical</a>
+          <a class="dropdown-item" href="/mysery">Mystery</a>
+          <a class="dropdown-item" href="/romance">Romance</a>
+          <a class="dropdown-item" href="/sport">Sport</a>
+          <a class="dropdown-item" href="/thriller">Thriller</a>
+          <a class="dropdown-item" href="/war">War</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="/year" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Year
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/year/2011">2011</a>
+          <a class="dropdown-item" href="/year/2012">2012</a>
+          <a class="dropdown-item" href="/year/2013">2013</a>
+          <a class="dropdown-item" href="/year/2014">2014</a>
+          <a class="dropdown-item" href="/year/2015">2015</a>
+          <a class="dropdown-item" href="/year/2016">2016</a>
+          <a class="dropdown-item" href="/year/2017">2017</a>
+          <a class="dropdown-item" href="/year/2018">2018</a>
+          <a class="dropdown-item" href="/year/2019">2019</a>
+          <a class="dropdown-item" href="/year/2020">2020</a>
+          <a class="dropdown-item" href="/year/2021">2021</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+      </li>
+    </ul>
+    <form method="POST" class="form-inline my-2 my-lg-0">
+      <input type="text" class="form-control mr-sm-2" id="search" name="search" placeholder="Search" />
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </div>
+</nav>
+ {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      {% if category == 'error' %}
+      <div class="alert alert-danger alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% else %}
+      <div class="alert alert-success alert-dismissable fade show" role="alert">
+        {{ message }}
+        <button type="button" class="close" data-dismiss="alert">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endif %}
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+
+<div class="container series">
+    {% block content %}{% endblock %}
+</div>
+
+   
+
+
+        <script
+            src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        {<script
+            type="text/javascript"
+            src="{{ url_for('static', filename='index.js') }}"
+        ></script>  
+    </body>
+</html>

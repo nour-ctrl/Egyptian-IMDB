@@ -1,0 +1,77 @@
+{% extends "base2.html" %}
+{%block title %}Home{% endblock %}
+
+{% block style %}
+<style> 
+        h1 {
+          font-family: Poppins-Regular;
+	        color: black;
+          line-height: 45px;
+          font-size: 25px;  
+          text-align: center;
+          }
+        * {
+          margin: 0; 
+          padding: 0;
+          }
+
+        body {
+          background-image: url(static/bg-02.jpg);
+          background-size: contain;
+          }
+        .series h3 {
+          color: white;
+          background-color: black; 
+          border-radius: 4px; 
+          display: table;
+          padding: 5px;
+          margin-top: 10px;
+          margin-left: 400px; 
+        }
+        .series img {
+          width: 100%; 
+          padding: 10px; 
+          margin-top: 15px; 
+          box-shadow: -4px 4px 5px 0 #000; 
+          cursor: pointer; 
+          transition: ls;  
+        }
+        .series img:hover {
+          transform: translateY(-10px);
+        }
+        .column {
+          float: left;
+          margin-left: 50px;
+          padding: 4px;
+          width: 25%;
+        }
+        .row::after {
+        content: "";
+        clear: both;
+        display: table;
+        }
+       </style>
+
+{% endblock %}
+{% block content %}
+<div class="containter series">
+<h3> 2021 Popular Movies </h3>
+<div class="row">
+      {% for i in range(0, len) %}
+        <div class="column">
+        <a href={{ movie_ID[i] }}>
+          <img src={{ current[i] }}>
+        </a>
+        </div>
+      {% endfor %}
+<h3> 2020 Popular Movies </h3>
+<div class="row">
+      {% for i in range(0, len1) %}
+        <div class="column">
+        <a href={{ movie_ID2[i] }} >
+          <img src={{ last_year[i] }}>
+        </a>
+        </div>
+      {% endfor %}
+</div>
+{% endblock %}
